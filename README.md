@@ -1,72 +1,60 @@
-**Fashion MNIST Image Classification** 
+# Fashion MNIST Image Classification
 
-This project implements a deep learning model using TensorFlow and Keras to classify images from the Fashion MNIST dataset. The dataset consists of 70,000 grayscale images in 10 categories, representing individual articles of clothing at low resolution (28 by 28 pixels).
+A deep learning project implemented in a Jupyter Notebook using TensorFlow and Keras to classify clothing items from the Fashion MNIST dataset.
 
-**Dataset Overview**
-The Fashion MNIST dataset is divided into:
+## Project Overview
+This project builds a Sequential neural network to categorize grayscale images of clothing into one of ten distinct classes. The model utilizes dense layers with ReLU activation and Dropout layers for regularization to achieve robust classification performance.
 
-Training Set: 60,000 images.
+## Dataset
+The project uses the **Fashion MNIST dataset**, which is built into Keras.
+* **Data Split**: 60,000 training images and 10,000 testing images.
+* **Image Dimensions**: 28x28 pixels (grayscale).
+* **Preprocessing**: Input pixel values (0-255) are normalized to a range of 0.0 to 1.0 to ensure stable training.
+* **Categories**: 
+    1. T-shirt/top
+    2. Trouser
+    3. Pullover
+    4. Dress
+    5. Coat
+    6. Sandal
+    7. Shirt
+    8. Sneaker
+    9. Bag
+    10. Ankle boot
 
-Test Set: 10,000 images.
+## Model Architecture
+The model is defined as a `Sequential` network with the following layers:
+1.  **Flatten**: Converts the 2D 28x28 image into a 1D array of 784 pixels.
+2.  **Dense**: 300 neurons with ReLU activation.
+3.  **Dropout**: Regularization layer to prevent overfitting.
+4.  **Dense**: 100 neurons with ReLU activation.
+5.  **Dropout**: Additional regularization layer.
+6.  **Dense (Output)**: 10 neurons with Softmax activation for multi-class probability distribution.
 
-Categories: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot.
+**Total Trainable Parameters**: 266,610.
 
-**Model Architecture**
-The model is a Sequential neural network with the following layers:
+## Training Configuration
+* **Optimizer**: Stochastic Gradient Descent (SGD).
+* **Loss Function**: `sparse_categorical_crossentropy`.
+* **Metric**: Accuracy.
+* **Epochs**: 30.
+* **Validation**: 5,000 samples reserved from the training set.
 
-Flatten: Converts the 28x28 image into a 1D array of 784 pixels.
+## Results
+After 30 epochs of training, the model achieved the following approximate metrics:
+* **Training Accuracy**: ~87.8%
+* **Validation Accuracy**: ~88.2%
+* **Validation Loss**: ~0.43
 
-Dense: 300 neurons with ReLU activation.
+## Dependencies
+The following libraries are required to run the notebook:
+* `tensorflow`
+* `keras`
+* `numpy`
+* `matplotlib`
 
-Dropout: Regularization layer to prevent overfitting.
-
-Dense: 100 neurons with ReLU activation.
-
-Dropout: Regularization layer.
-
-Dense (Output): 10 neurons with Softmax activation for multi-class classification.
-
-Total trainable parameters: 266,610.
-
-**Training Configuration**
-Loss Function: sparse_categorical_crossentropy.
-
-Optimizer: Stochastic Gradient Descent (SGD).
-
-Metrics: Accuracy.
-
-Epochs: 30.
-
-Validation: 5,000 samples taken from the training set.
-
-**Performance**
-The model achieves high accuracy on both training and validation sets. In the final epoch (30/30), the performance metrics were approximately:
-
-Training Accuracy: ~87.8%
-
-Validation Accuracy: ~88.2%
-
-Validation Loss: ~0.43
-
-**Setup and Usage**
-Prerequisites:
-
-Python 3.x
-
-TensorFlow / Keras
-
-NumPy
-
-Matplotlib
-
-Execution:
-
-Load the dataset and normalize pixel values to a range of 0 to 1.
-
-Define and compile the Sequential model.
-
-Train the model using model.fit().
-
-Evaluate the model and visualize training history.
-
-Perform predictions on new data samples.
+## Usage
+1.  Open `fashion_mnist.ipynb` in a Jupyter environment.
+2.  Run the initialization cells to load and normalize the dataset.
+3.  Execute the model definition and training cells.
+4.  View the generated plots to see training history (loss and accuracy) and visual predictions.
